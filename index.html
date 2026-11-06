@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Max van Leeuwen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* layout: magazijn-labels: smalle display-koppen, mono codes, één hi-vis gele band */
+  --bg: #E6E7E3;
+  --paper: #F6F6F3;
+  --ink: #15161A;
+  --muted: #595B60;
+  --line: #C6C7C2;
+  --accent: #F4B400;
+  --on-accent: #15161A;
+  --ok: #1B6E42;
+  --ok-bg: #D8EDDF;
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121316;
+    --paper: #1B1C20;
+    --ink: #ECECE8;
+    --muted: #A3A5AA;
+    --line: #34363C;
+    --accent: #F4B400;
+    --on-accent: #15161A;
+    --ok: #63CC93;
+    --ok-bg: #16301F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121316;
+  --paper: #1B1C20;
+  --ink: #ECECE8;
+  --muted: #A3A5AA;
+  --line: #34363C;
+  --accent: #F4B400;
+  --on-accent: #15161A;
+  --ok: #63CC93;
+  --ok-bg: #16301F;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: inherit; }
+img { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--accent); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 480px) { .wrap { padding: 0 16px; } }
+
+h1, h2, h3 { text-wrap: balance; }
+.mono { font-family: var(--font-mono); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- header ---------- */
+header.site {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 2px solid var(--ink);
+}
+.site-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px 24px; min-height: 64px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.mark {
+  width: 40px; height: 40px; flex: none;
+  background: var(--accent); color: var(--on-accent);
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 900; font-size: 19px;
+}
+.brand-name {
+  font-family: var(--font-display); font-weight: 800; font-size: 22px;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1;
+}
+nav.main { display: flex; gap: 2px; overflow-x: auto; }
+nav.main a {
+  font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .06em;
+  text-decoration: none; white-space: nowrap;
+  padding: 10px 10px 7px;
+  border-bottom: 3px solid transparent;
+}
+nav.main a:hover { border-bottom-color: var(--line); }
+nav.main a.active { border-bottom-color: var(--accent); }
+@media (max-width: 900px) {
+  .site-inner { padding: 10px 0 0; }
+  nav.main { width: 100%; margin: 0 -10px; }
+}
+
+main.wrap { padding-top: 48px; padding-bottom: 88px; }
+[data-view][hidden] { display: none; }
+
+/* ---------- buttons ---------- */
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .06em;
+  text-decoration: none; padding: 12px 18px;
+  border: 2px solid var(--ink);
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+/* ---------- home ---------- */
+h1.giant {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(68px, 15vw, 188px);
+  line-height: .8; letter-spacing: -.005em;
+  text-transform: uppercase;
+  margin: 14px 0 32px;
+}
+.hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } }
+.lead { font-size: 21px; line-height: 1.5; max-width: 32em; margin: 0 0 26px; }
+
+.label-card { border: 2px solid var(--ink); background: var(--paper); }
+.label-head {
+  background: var(--ink); color: var(--bg);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 8px 14px; display: flex; justify-content: space-between; gap: 12px;
+}
+.label-card dl { margin: 0; display: grid; }
+.label-card .row {
+  display: grid; grid-template-columns: 128px 1fr; gap: 12px;
+  padding: 10px 14px; border-bottom: 1px solid var(--line);
+}
+.label-card dt {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); padding-top: 3px;
+}
+.label-card dd { margin: 0; font-size: 16px; font-weight: 500; }
+.barcode { padding: 14px 14px 12px; color: var(--ink); }
+.barcode svg { display: block; width: 100%; height: 48px; }
+.barcode p { margin: 6px 0 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: .35em; text-align: center; }
+
+.tape {
+  height: 22px; margin: 56px 0 44px;
+  background: repeating-linear-gradient(-45deg, #F4B400 0 16px, #15161A 16px 32px);
+}
+
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 16px 32px; flex-wrap: wrap; margin-bottom: 22px;
+}
+h2.display {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(32px, 4.4vw, 46px); line-height: .95;
+  text-transform: uppercase; margin: 6px 0 0;
+}
+.section-head p.sub { margin: 8px 0 0; color: var(--muted); max-width: 36em; }
+.big-num {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 108px; line-height: .78;
+  font-variant-numeric: tabular-nums;
+}
+.big-num span { color: var(--muted); }
+.big-num-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; text-align: right; }
+
+.rack { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; }
+@media (max-width: 900px) { .rack { grid-template-columns: repeat(3, 1fr); } }
+.slot {
+  position: relative; overflow: hidden;
+  border: 2px solid var(--ink); background: var(--paper);
+  padding: 12px 10px 18px; min-height: 104px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 8px;
+  text-decoration: none;
+}
+.slot .code { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; }
+.slot .name { font-weight: 600; font-size: 14px; line-height: 1.25; }
+.slot.done { background: var(--ink); color: var(--bg); }
+.slot.done::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+  background: var(--accent); transform-origin: left;
+  animation: fill .7s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay: calc(var(--i, 0) * 110ms + 150ms);
+}
+.slot.busy::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+  background: repeating-linear-gradient(-45deg, #F4B400 0 6px, #15161A 6px 12px);
+}
+.slot.open { border-style: dashed; border-color: var(--line); background: transparent; color: var(--muted); }
+a.slot:hover { outline: 3px solid var(--accent); outline-offset: -2px; }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.legend { display: flex; gap: 8px 22px; flex-wrap: wrap; margin-top: 14px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 14px; height: 14px; display: inline-block; border: 2px solid var(--ink); }
+.legend i.l-done { background: var(--ink); }
+.legend i.l-busy { background: repeating-linear-gradient(-45deg, #F4B400 0 3px, #15161A 3px 6px); }
+.legend i.l-open { border-style: dashed; border-color: var(--muted); }
+
+.index { border-top: 2px solid var(--ink); margin-top: 8px; }
+.index a {
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 4px 20px; align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--line); text-decoration: none;
+}
+.index .n { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.index .t { font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1; text-transform: uppercase; }
+.index .d { grid-column: 2; color: var(--muted); font-size: 15px; }
+.index .arrow { grid-row: 1; grid-column: 3; font-family: var(--font-mono); font-size: 13px; }
+.index a:hover .t { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 5px; text-underline-offset: 4px; }
+.soon { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1.5px dashed var(--line); padding: 2px 7px; vertical-align: middle; margin-left: 8px; }
+
+/* ---------- page heads ---------- */
+.page-head { border-bottom: 2px solid var(--ink); padding-bottom: 28px; margin-bottom: 44px; }
+h1.title {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(50px, 9vw, 108px); line-height: .86;
+  text-transform: uppercase; margin: 10px 0 18px;
+}
+.intro { font-size: 19px; line-height: 1.55; max-width: 40em; margin: 0; }
+.back { display: inline-block; font-family: var(--font-mono); font-size: 13px; text-decoration: none; margin-bottom: 18px; border-bottom: 2px solid var(--accent); }
+.meta { display: flex; gap: 10px 18px; flex-wrap: wrap; align-items: center; margin-top: 18px; }
+
+/* ---------- stamps & chips ---------- */
+.stamp {
+  display: inline-block; font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  border: 1.5px solid currentColor; padding: 3px 8px; white-space: nowrap;
+}
+.stamp.done { color: var(--ok); background: var(--ok-bg); }
+.stamp.busy { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.stamp.open { color: var(--muted); border-style: dashed; }
+.chip {
+  display: inline-block; font-family: var(--font-mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: .05em;
+  border: 1.5px solid var(--ink); padding: 4px 9px; margin: 0 6px 6px 0;
+}
+.chip.hot { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+/* ---------- prose ---------- */
+.prose { max-width: 68ch; }
+.prose h2 {
+  font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1;
+  text-transform: uppercase; margin: 48px 0 14px;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: 19px; font-weight: 600; margin: 28px 0 8px; }
+.prose p { margin: 0 0 16px; }
+.prose ol, .prose ul { margin: 0 0 18px; padding-left: 22px; }
+.prose li { margin-bottom: 8px; }
+.prose ul.squares { list-style: none; padding: 0; }
+.prose ul.squares li { position: relative; padding-left: 26px; }
+.prose ul.squares li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 10px; height: 10px; background: var(--accent); outline: 1.5px solid var(--ink); }
+.callout { border-left: 6px solid var(--accent); background: var(--paper); padding: 16px 20px; margin: 0 0 20px; }
+.callout .eyebrow { margin-bottom: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* ---------- over mij ---------- */
+.about { display: grid; grid-template-columns: 330px 1fr; gap: 56px; align-items: start; }
+.about .label-card { position: sticky; top: 96px; }
+@media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 36px; } .about .label-card { position: static; } }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 6px 0 20px; }
+@media (max-width: 600px) { .duo { grid-template-columns: 1fr; } }
+.duo > div { border: 2px solid var(--ink); background: var(--paper); padding: 18px 20px; }
+.duo h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; color: var(--muted); }
+.duo ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.duo li { margin: 0; }
+.duo li strong { display: block; font-weight: 600; }
+.duo li span { color: var(--muted); font-size: 15px; line-height: 1.45; display: block; }
+.duo .plus { border-top: 6px solid var(--ok); }
+.duo .grow { border-top: 6px solid var(--accent); }
+.route { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--ink); margin: 6px 0 20px; }
+.route div { padding: 14px 16px; border-right: 1px solid var(--line); background: var(--paper); }
+.route div:last-child { border-right: 0; }
+.route .eyebrow { margin-bottom: 4px; }
+.route strong { font-family: var(--font-display); font-weight: 800; font-size: 24px; text-transform: uppercase; line-height: 1; }
+@media (max-width: 600px) { .route { grid-template-columns: 1fr; } .route div { border-right: 0; border-bottom: 1px solid var(--line); } .route div:last-child { border-bottom: 0; } }
+
+/* ---------- TOW overview ---------- */
+.tow-list { border-top: 2px solid var(--ink); }
+.tow-row {
+  display: grid; grid-template-columns: 70px minmax(0, 1fr) 150px 210px 110px;
+  gap: 8px 22px; align-items: center;
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.tow-row .num { font-family: var(--font-display); font-weight: 900; font-size: 56px; line-height: .8; }
+.tow-row .num.dim { color: var(--muted); }
+.tow-row h3 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1.3; }
+.tow-row p { margin: 4px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.tow-row .dl .eyebrow { font-size: 10.5px; }
+.tow-row .dl div { font-size: 14px; line-height: 1.4; }
+.tow-row .go { font-family: var(--font-mono); font-size: 13px; text-decoration: none; border-bottom: 2px solid var(--accent); justify-self: start; }
+.tow-row .go.none { border: 0; color: var(--muted); }
+@media (max-width: 900px) {
+  .tow-row { grid-template-columns: 56px minmax(0, 1fr); }
+  .tow-row .num { grid-row: span 4; font-size: 46px; align-self: start; }
+  .tow-row > *:not(.num) { grid-column: 2; }
+}
+
+/* ---------- detail pages ---------- */
+.scores { border-top: 2px solid var(--ink); margin: 0 0 44px; max-width: 860px; }
+.score-row { display: grid; grid-template-columns: 200px 1fr; gap: 6px 20px; padding: 14px 0 8px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.score-row .eyebrow { color: var(--ink); }
+@media (max-width: 600px) { .score-row { grid-template-columns: 1fr; } }
+
+.goals { display: grid; gap: 16px; max-width: 860px; margin-bottom: 56px; }
+.goal { border: 2px solid var(--ink); background: var(--paper); padding: 24px 26px 10px; }
+.goal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px 20px; flex-wrap: wrap; margin-bottom: 12px; }
+.goal h3 { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; text-transform: uppercase; margin: 6px 0 0; }
+.goal p { max-width: 68ch; }
+
+.step-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 5vw, 52px); line-height: .95; text-transform: uppercase; margin: 0 0 22px; }
+
+.qs { max-width: 860px; }
+.q { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 20px; padding: 28px 0; border-top: 1px solid var(--line); }
+.q:first-child { border-top: 2px solid var(--ink); }
+.q-num { font-family: var(--font-display); font-weight: 900; font-size: 60px; line-height: .8; }
+.q h3 { margin: 0 0 12px; font-size: 21px; font-weight: 600; line-height: 1.3; }
+.q p { margin: 0 0 14px; max-width: 68ch; }
+.q p:last-child { margin-bottom: 0; }
+@media (max-width: 600px) { .q { grid-template-columns: 1fr; gap: 8px; } .q-num { font-size: 44px; } }
+
+.terms { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.terms div { display: grid; grid-template-columns: 170px 1fr; gap: 6px 18px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.terms dt, .terms .k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+.terms dd { margin: 0; }
+@media (max-width: 600px) { .terms div { grid-template-columns: 1fr; } }
+
+.pros { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .pros { grid-template-columns: 1fr; } }
+.pros div { background: var(--paper); border: 2px solid var(--ink); padding: 16px 18px; }
+.pros .yes { border-top: 6px solid var(--ok); }
+.pros .no { border-top: 6px dashed var(--muted); }
+.pros .eyebrow { margin-bottom: 6px; }
+.pros p { margin: 0; }
+
+.ifthen { display: grid; gap: 8px; }
+.ifthen div { display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); border: 1px solid var(--line); }
+.ifthen span { padding: 12px 16px; line-height: 1.45; }
+.ifthen span:first-child { border-right: 1px solid var(--line); }
+.ifthen b { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; font-weight: 500; display: block; color: var(--muted); margin-bottom: 2px; }
+@media (max-width: 600px) { .ifthen div { grid-template-columns: 1fr; } .ifthen span:first-child { border-right: 0; border-bottom: 1px solid var(--line); } }
+
+.motto {
+  font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 6vw, 64px);
+  line-height: 1.02; text-transform: uppercase; margin: 0 0 16px;
+}
+.motto mark { background: var(--accent); color: var(--on-accent); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+.talks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0 0 44px; max-width: 860px; }
+.talks div { border: 2px solid var(--ink); padding: 12px 14px; background: var(--paper); }
+.talks div.open { border-style: dashed; border-color: var(--line); background: transparent; color: var(--muted); }
+.talks strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 24px; text-transform: uppercase; line-height: 1; margin-bottom: 8px; }
+@media (max-width: 600px) { .talks { grid-template-columns: 1fr; } }
+
+.report { max-width: 860px; }
+.report-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px 20px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 32px; }
+.report-head h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 5vw, 50px); line-height: .95; text-transform: uppercase; margin: 0; }
+
+/* ---------- empty slots ---------- */
+.empty {
+  border: 2px dashed var(--line); padding: 28px; display: grid; gap: 6px; align-content: start;
+  color: var(--muted); min-height: 150px;
+}
+.empty .eyebrow { margin-bottom: 4px; }
+.empty h3 { margin: 0; color: var(--ink); font-family: var(--font-display); font-weight: 800; font-size: 28px; text-transform: uppercase; line-height: 1; }
+.empty p { margin: 0; max-width: 50ch; }
+.empty-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (max-width: 700px) { .empty-grid { grid-template-columns: 1fr; } }
+.stack { display: grid; gap: 14px; max-width: 860px; margin-top: 14px; }
+
+/* ---------- footer ---------- */
+footer.site { border-top: 2px solid var(--ink); padding: 22px 0 36px; }
+footer.site .wrap { display: flex; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="brand" href="#home" aria-label="Naar de startpagina">
+      <span class="mark" aria-hidden="true">MvL</span>
+      <span class="brand-name">Max van Leeuwen</span>
+    </a>
+    <nav class="main" aria-label="Hoofdmenu">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#over-mij" data-nav="over-mij">Over mij</a>
+      <a href="#cv" data-nav="cv">CV</a>
+      <a href="#talentontwikkeling" data-nav="talentontwikkeling">Talentontwikkeling</a>
+      <a href="#snuffelstage" data-nav="snuffelstage">Snuffelstage</a>
+      <a href="#overig" data-nav="overig">Overig</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- =================== HOME =================== -->
+<section data-view="home">
+  <p class="eyebrow">Digitaal portfolio · Ondernemerschap &amp; Retail Management · Jaar 1 · 2026–2027</p>
+  <h1 class="giant">Max van<br>Leeuwen</h1>
+
+  <div class="hero-grid">
+    <div>
+      <p class="lead">Eerstejaars student Ondernemerschap &amp; Retail Management. Naast mijn studie werk ik in het magazijn van Interfastfood en sta ik op het voetbalveld. Op deze site houd ik het hele jaar bij hoe ik me ontwikkel als ondernemer.</p>
+      <div class="btns">
+        <a class="btn primary" href="#talentontwikkeling">Bekijk mijn TOW-opdrachten</a>
+        <a class="btn" href="#over-mij">Over mij</a>
+      </div>
+    </div>
+
+    <div class="label-card" aria-label="Studentgegevens">
+      <div class="label-head"><span>Student</span><span>ORM · jaar 1</span></div>
+      <dl>
+        <div class="row"><dt>Naam</dt><dd>Max van Leeuwen</dd></div>
+        <div class="row"><dt>Studentnr.</dt><dd class="mono">1146417</dd></div>
+        <div class="row"><dt>Opleiding</dt><dd>Ondernemerschap &amp; Retail Management</dd></div>
+        <div class="row"><dt>Motto</dt><dd>Niet afwachten, gewoon beginnen.</dd></div>
+      </dl>
+      <div class="barcode" aria-hidden="true">
+        <svg class="bc" viewBox="0 0 300 48" preserveAspectRatio="none"></svg>
+        <p>1146417</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tape" role="presentation"></div>
+
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Talentontwikkeling</p>
+      <h2 class="display">Voortgang dit jaar</h2>
+      <p class="sub">Elk vak is één onderdeel van de TOW-opdrachten. Klik op een gevuld vak om de opdracht te lezen.</p>
+    </div>
+    <div>
+      <div class="big-num">3<span>/9</span></div>
+      <div class="big-num-label">ingeleverd</div>
+    </div>
+  </div>
+
+  <div class="rack">
+    <a class="slot busy" href="#talentontwikkeling"><span class="code">TOW-1</span><span class="name">Website</span></a>
+    <a class="slot done" href="#opdracht-2" style="--i:0"><span class="code">TOW-2</span><span class="name">Hoe ondernemend ben jij?</span></a>
+    <a class="slot done" href="#opdracht-3" style="--i:1"><span class="code">TOW-3</span><span class="name">Leerdoelen</span></a>
+    <div class="slot open"><span class="code">TOW-4</span><span class="name">Brief aan mezelf</span></div>
+    <a class="slot done" href="#opdracht-5" style="--i:2"><span class="code">TOW-5.1</span><span class="name">Gesprek 1</span></a>
+    <div class="slot open"><span class="code">TOW-5.2</span><span class="name">Gesprek 2</span></div>
+    <div class="slot open"><span class="code">TOW-5.3</span><span class="name">Gesprek 3</span></div>
+    <div class="slot open"><span class="code">TOW-6.1</span><span class="name">Event 1</span></div>
+    <div class="slot open"><span class="code">TOW-6.2</span><span class="name">Event 2</span></div>
+  </div>
+  <div class="legend">
+    <span><i class="l-done"></i>Ingeleverd</span>
+    <span><i class="l-busy"></i>Mee bezig</span>
+    <span><i class="l-open"></i>Nog te doen</span>
+  </div>
+
+  <div class="tape" role="presentation"></div>
+
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Inhoud</p>
+      <h2 class="display">Op deze site</h2>
+    </div>
+  </div>
+  <div class="index">
+    <a href="#over-mij"><span class="n">01</span><span class="t">Over mij</span><span class="arrow">→</span><span class="d">Wie ik ben, waar ik vandaan kom en waar ik naartoe wil.</span></a>
+    <a href="#cv"><span class="n">02</span><span class="t">CV <span class="soon">Volgt</span></span><span class="arrow">→</span><span class="d">Opleiding, werkervaring en vaardigheden.</span></a>
+    <a href="#talentontwikkeling"><span class="n">03</span><span class="t">Talentontwikkeling</span><span class="arrow">→</span><span class="d">Alle TOW-opdrachten en gespreksverslagen.</span></a>
+    <a href="#snuffelstage"><span class="n">04</span><span class="t">Snuffelstage <span class="soon">Volgt</span></span><span class="arrow">→</span><span class="d">Mijn stageopdrachten.</span></a>
+    <a href="#overig"><span class="n">05</span><span class="t">Overig <span class="soon">Volgt</span></span><span class="arrow">→</span><span class="d">Studentbedrijf, keuzevak en belevenisweken.</span></a>
+  </div>
+</section>
+
+<!-- =================== OVER MIJ =================== -->
+<section data-view="over-mij" hidden>
+  <div class="page-head">
+    <p class="eyebrow">01 · Over mij</p>
+    <h1 class="title">Over mij</h1>
+    <p class="intro">Ik ben Max van Leeuwen, 18 jaar, en ik woon in Lekkerkerk. Dit jaar ben ik begonnen met Ondernemerschap &amp; Retail Management, en dat voelt als de juiste plek.</p>
+  </div>
+
+  <div class="about">
+    <div class="label-card" aria-label="Persoonlijke gegevens">
+      <div class="label-head"><span>Gegevens</span><span>Max</span></div>
+      <dl>
+        <div class="row"><dt>Naam</dt><dd>Max van Leeuwen</dd></div>
+        <div class="row"><dt>Studentnr.</dt><dd class="mono">1146417</dd></div>
+        <div class="row"><dt>Leeftijd</dt><dd>18 jaar</dd></div>
+        <div class="row"><dt>Woonplaats</dt><dd>Lekkerkerk</dd></div>
+        <div class="row"><dt>Opleiding</dt><dd>Ondernemerschap &amp; Retail Management, jaar 1</dd></div>
+        <div class="row"><dt>Vooropleiding</dt><dd>Havo</dd></div>
+        <div class="row"><dt>Werk</dt><dd>Magazijn, Interfastfood</dd></div>
+        <div class="row"><dt>Sport</dt><dd>Voetbal</dd></div>
+      </dl>
+      <div class="barcode" aria-hidden="true">
+        <svg class="bc" viewBox="0 0 300 48" preserveAspectRatio="none"></svg>
+        <p>1146417</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h2>Ondernemen van dichtbij</h2>
+      <p>Mijn vader is eigenaar van Interfastfood, en daar werk ik naast mijn studie in het magazijn. Op de vloer zie ik elke dag hoe een bedrijf in de praktijk draait: bestellingen die op tijd de deur uit moeten, een voorraad die moet kloppen en collega's die op elkaar moeten kunnen rekenen.</p>
+      <p>Misschien neem ik het bedrijf later over. Daarvoor moet ik meer kunnen dan het werk op de vloer. Ik wil leren hoe je kansen ziet, goed samenwerkt, duidelijk communiceert en zelf beslissingen neemt. Daarom zit ik op deze opleiding.</p>
+
+      <h2>De overstap</h2>
+      <p>Vorig jaar studeerde ik Commerciële Economie. Daar maakte ik mijn opdrachten vooral omdat het moest, en op vrijdagochtend dacht ik al aan maandag. Sinds de overstap naar Ondernemerschap &amp; Retail Management snap ik waarom ik iets leer, omdat ik het direct kan koppelen aan ondernemen en aan Interfastfood. Ik ga met veel meer zin naar school.</p>
+
+      <h2>Voetbal</h2>
+      <p>Buiten school en werk ben ik het liefst op het voetbalveld. Ik speel in een team, en voetbal leert je meer dan alleen een bal raken. Je wint en verliest samen, je moet op elkaar kunnen bouwen, en als iemand een fout maakt, heb je niets aan mopperen. Dat is precies waar ik in groepsopdrachten ook aan werk.</p>
+
+      <h2>Sterk in &amp; werk aan</h2>
+      <div class="duo">
+        <div class="plus">
+          <h3>Hier ben ik sterk in</h3>
+          <ul>
+            <li><strong>Risico aandurven</strong><span>Ik durf een keuze te maken, ook als ik niet precies weet hoe het uitpakt.</span></li>
+            <li><strong>Eerst een plan</strong><span>Ik stel graag eerst een doel, verzamel informatie en maak dan een plan.</span></li>
+            <li><strong>Serieus en snel werken</strong><span>Waar ik aan begin, maak ik af, het liefst op tijd.</span></li>
+          </ul>
+        </div>
+        <div class="grow">
+          <h3>Hier werk ik dit jaar aan</h3>
+          <ul>
+            <li><strong>Samenwerken</strong><span>Minder snel zelf het werk overnemen en vaker zeggen wat ik ervan vind.</span></li>
+            <li><strong>Initiatief nemen</strong><span>Niet afwachten, maar zelf een taak oppakken of een idee voorstellen.</span></li>
+            <li><strong>Presenteren</strong><span>Mijn ideeën rustig en duidelijk uitleggen.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p>Meer hierover lees je bij <a href="#opdracht-2">TOW-opdracht 2</a> en <a href="#opdracht-3">TOW-opdracht 3</a>.</p>
+
+      <h2>Waar ik naartoe wil</h2>
+      <div class="route">
+        <div><p class="eyebrow">Nu</p><strong>Propedeuse</strong></div>
+        <div><p class="eyebrow">Daarna</p><strong>Bedrijfskunde</strong></div>
+        <div><p class="eyebrow">Later</p><strong>Interfastfood</strong></div>
+      </div>
+      <p>Eerst haal ik mijn propedeuse. Daarna wil ik doorstromen naar Bedrijfskunde, en later wil ik misschien verder bij Interfastfood.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CV =================== -->
+<section data-view="cv" hidden>
+  <div class="page-head">
+    <p class="eyebrow">02 · Curriculum vitae</p>
+    <h1 class="title">CV</h1>
+    <p class="intro">Mijn CV komt hier binnenkort te staan.</p>
+  </div>
+  <div class="empty-grid">
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Opleiding</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Werkervaring</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Vaardigheden</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Talen &amp; overig</h3><p>Volgt.</p></div>
+  </div>
+</section>
+
+<!-- =================== TALENTONTWIKKELING =================== -->
+<section data-view="talentontwikkeling" hidden>
+  <div class="page-head">
+    <p class="eyebrow">03 · Talentontwikkeling (TOW)</p>
+    <h1 class="title">Talent&shy;ontwikkeling</h1>
+    <p class="intro">De cursus Talentontwikkeling loopt door het hele eerste jaar. Samen met mijn TOW-docent, meneer Visser, kijk ik terug op wat ik heb gedaan en vooruit naar wat ik nog wil leren. Hier staan alle TOW-opdrachten: wat al is ingeleverd en wat nog komt.</p>
+  </div>
+
+  <div class="tow-list">
+    <div class="tow-row">
+      <div class="num">1</div>
+      <div><h3>Personal branding</h3><p>Deze website: mijn digitale portfolio voor het hele jaar.</p></div>
+      <div><span class="stamp busy">Mee bezig</span></div>
+      <div class="dl"><p class="eyebrow">Deadline</p><div>1e versie 18 dec 2026<br>Definitief 7 mei 2027</div></div>
+      <span class="go none">Je bent hier</span>
+    </div>
+    <div class="tow-row">
+      <div class="num">2</div>
+      <div><h3>Hoe ondernemend ben jij?</h3><p>Wondernemerscan, analyse van de uitslag en drie leerpunten.</p></div>
+      <div><span class="stamp done">Ingeleverd</span></div>
+      <div class="dl"><p class="eyebrow">Onderdeel</p><div>Analyse + 3 leerpunten</div></div>
+      <a class="go" href="#opdracht-2">Lees →</a>
+    </div>
+    <div class="tow-row">
+      <div class="num">3</div>
+      <div><h3>Leerdoelen &amp; goede voornemens</h3><p>Drie SMART-leerdoelen en het werkformulier Goede voornemens.</p></div>
+      <div><span class="stamp done">Ingeleverd</span></div>
+      <div class="dl"><p class="eyebrow">Deadline</p><div>Vóór 1e TOW-gesprek</div></div>
+      <a class="go" href="#opdracht-3">Lees →</a>
+    </div>
+    <div class="tow-row">
+      <div class="num dim">4</div>
+      <div><h3>Brief uit de nabije toekomst</h3><p>Een brief aan mezelf vanuit het einde van dit collegejaar.</p></div>
+      <div><span class="stamp open">Nog te doen</span></div>
+      <div class="dl"><p class="eyebrow">Deadline</p><div>Vóór 2e TOW-gesprek</div></div>
+      <span class="go none">—</span>
+    </div>
+    <div class="tow-row">
+      <div class="num">5</div>
+      <div><h3>TOW-gesprekken</h3><p>Drie gespreksverslagen van mijn gesprekken met meneer Visser.</p></div>
+      <div><span class="stamp done">1 van 3</span></div>
+      <div class="dl"><p class="eyebrow">Deadline</p><div>Eén werkdag na elk gesprek</div></div>
+      <a class="go" href="#opdracht-5">Lees →</a>
+    </div>
+    <div class="tow-row">
+      <div class="num dim">6</div>
+      <div><h3>Deelname aan events</h3><p>Vlog of collage van minimaal twee netwerk- of alumni-events.</p></div>
+      <div><span class="stamp open">Nog te doen</span></div>
+      <div class="dl"><p class="eyebrow">Deadline</p><div>3 mei 2027</div></div>
+      <span class="go none">—</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== OPDRACHT 2 =================== -->
+<section data-view="opdracht-2" hidden>
+  <div class="page-head">
+    <a class="back" href="#talentontwikkeling">← Alle TOW-opdrachten</a>
+    <p class="eyebrow">TOW-opdracht 2</p>
+    <h1 class="title">Hoe ondernemend ben jij?</h1>
+    <p class="intro">Met de Wondernemerscan heb ik mijn ondernemende mindset in kaart gebracht. Hieronder staat wat de test zegt, in hoeverre ik het daarmee eens ben en welke leerpunten ik eruit haal.</p>
+    <div class="meta"><span class="stamp done">Ingeleverd</span></div>
+  </div>
+
+  <p class="eyebrow" style="margin-bottom:10px">Uitslag Wondernemerscan in het kort</p>
+  <div class="scores">
+    <div class="score-row"><span class="eyebrow">Sterkte</span><div><span class="chip hot">Risico aandurven</span></div></div>
+    <div class="score-row"><span class="eyebrow">Op goede weg</span><div><span class="chip">Grenzen verleggen</span></div></div>
+    <div class="score-row"><span class="eyebrow">Opportuniteit</span><div><span class="chip">Proactief denken</span><span class="chip">Actie ondernemen</span><span class="chip">Waarde zien</span><span class="chip">Waarde creëren</span><span class="chip">De markt kennen</span></div></div>
+    <div class="score-row"><span class="eyebrow">Besluitvorming</span><div><span class="chip">Causaal denken</span></div></div>
+  </div>
+
+  <div class="prose">
+    <h2>Analyse Wondernemerscan</h2>
+    <p>Uit de Wondernemerscan komt naar voren dat ik op verschillende onderdelen al ondernemende eigenschappen heb, maar dat er ook nog punten zijn waarin ik mij kan ontwikkelen. Ik scoor een sterkte op risico aandurven. Hier herken ik mij wel in. Ik vind het niet erg om een keuze te maken terwijl ik niet precies weet hoe iets gaat lopen. Ik denk dat dit later handig kan zijn als ik een bedrijf overneem, omdat je als ondernemer soms keuzes moet maken zonder dat je zeker weet wat het resultaat wordt.</p>
+    <p>Bij grenzen verleggen scoor ik op goede weg. Ook hierin herken ik mij. Ik heb vaak ideeën en denk na over hoe iets anders of beter kan, maar ik werk niet altijd meteen mijn idee volledig uit. Ik kan hierin nog groeien door vaker mijn ideeën uit te spreken en er ook echt iets mee te doen.</p>
+    <p>Proactief denken, actie ondernemen, waarde zien, waarde creëren en de markt kennen staan allemaal bij mij als opportuniteit. Hier ben ik het grotendeels mee eens. Ik kan deze eigenschappen nog sterker ontwikkelen. Vooral het eerder zien van kansen en er daarna ook echt actie op ondernemen zijn punten waar ik beter in wil worden. Ik wil niet alleen een goed idee hebben, maar ook kijken wat ik ermee kan doen. Ook lijkt het mij belangrijk om de markt goed te kennen als ik later misschien Interfastfood ga overnemen.</p>
+    <p>Bij besluitvorming scoor ik op causaal denken. Dit betekent dat ik graag eerst een doel stel, informatie verzamel en daarna een plan maak. Dat herken ik. Ik vind het prettig om te weten waar ik naartoe wil voordat ik iets ga doen. Tegelijkertijd laat de test zien dat effectueel denken ook belangrijk is, vooral wanneer dingen anders lopen dan verwacht. Daar wil ik nog beter in worden.</p>
+    <p>Over het algemeen ben ik het dus grotendeels eens met de test. Ik herken vooral mijn sterke kant bij risico nemen en mijn behoefte aan een duidelijk plan. De uitkomsten die als opportuniteit worden genoemd zie ik vooral als punten waarin ik kan groeien. Mijn doel is om niet alleen ideeën te hebben, maar ook meer initiatief te nemen, beter samen te werken en mezelf beter te presenteren.</p>
+
+    <h2>Mijn drie belangrijkste leerpunten</h2>
+    <ol>
+      <li>Mijn eerste leerpunt is dat ik actiever initiatief wil nemen en kansen sneller wil aanpakken.</li>
+      <li>Mijn tweede leerpunt is dat ik beter wil worden in presenteren en mijn ideeën duidelijk uitleggen.</li>
+      <li>Mijn derde leerpunt is dat ik mijn inzet en samenwerking binnen projecten wil verbeteren, zodat ik een actievere rol inneem in een team.</li>
+    </ol>
+    <p>Deze leerpunten werk ik uit tot SMART-leerdoelen in <a href="#opdracht-3">TOW-opdracht 3</a>.</p>
+  </div>
+</section>
+
+<!-- =================== OPDRACHT 3 =================== -->
+<section data-view="opdracht-3" hidden>
+  <div class="page-head">
+    <a class="back" href="#talentontwikkeling">← Alle TOW-opdrachten</a>
+    <p class="eyebrow">TOW-opdracht 3</p>
+    <h1 class="title">Leerdoelen &amp; goede voornemens</h1>
+    <p class="intro">Drie SMART-leerdoelen voor dit collegejaar, gekoppeld aan de EntreComp-competenties, en een plan om er echt mee aan de slag te gaan.</p>
+    <div class="meta"><span class="stamp done">Ingeleverd</span></div>
+  </div>
+
+  <p class="eyebrow">Stap 1</p>
+  <h2 class="step-title">SMART-leerdoelen</h2>
+  <div class="goals">
+    <article class="goal">
+      <div class="goal-head">
+        <div><p class="eyebrow">Leerdoel 1</p><h3>Meer initiatief nemen</h3></div>
+        <span class="chip hot">EntreComp: initiatief nemen</span>
+      </div>
+      <p>Dit studiejaar wil ik actiever initiatief nemen tijdens lessen en groepsopdrachten. De Wondernemerscan laat zien dat proactief denken en actie ondernemen nog kansen voor mij zijn. Daarom wil ik minimaal één keer per week zelf het initiatief nemen, bijvoorbeeld door een taak op mij te nemen, een idee voor te stellen of een probleem op te lossen zonder dat iemand mij eerst vraagt. Aan het einde van het studiejaar wil ik minimaal 25 momenten hebben waarop ik bewust initiatief heb genomen. Dit past bij de EntreComp-competentie initiatief nemen. Op deze manier wil ik leren om minder af te wachten en sneller in actie te komen.</p>
+    </article>
+    <article class="goal">
+      <div class="goal-head">
+        <div><p class="eyebrow">Leerdoel 2</p><h3>Beter worden in presenteren</h3></div>
+        <span class="chip hot">EntreComp: communiceren &amp; anderen meenemen</span>
+      </div>
+      <p>Dit studiejaar wil ik zekerder worden in presenteren. Ik wil mijn ideeën rustig en duidelijk kunnen uitleggen zonder te veel na te denken over wat anderen ervan vinden. Bij minimaal vier presentaties wil ik bewust een actieve rol nemen. Na iedere presentatie vraag ik aan een klasgenoot of docent om één verbeterpunt en één punt dat goed ging. Aan het einde van het studiejaar wil ik mijn eigen presentatievaardigheid minimaal een 7 geven. Dit doel past bij de EntreComp-competenties communiceren en anderen meenemen. Dit helpt mij ook voor later, omdat presenteren en duidelijk uitleggen belangrijk zijn als ondernemer.</p>
+    </article>
+    <article class="goal">
+      <div class="goal-head">
+        <div><p class="eyebrow">Leerdoel 3</p><h3>Beter samenwerken en meer inzet tonen</h3></div>
+        <span class="chip hot">EntreComp: samenwerken</span>
+      </div>
+      <p>Dit studiejaar wil ik mijn inzet binnen groepsopdrachten verbeteren en actiever samenwerken. Mijn doel is om bij ieder groepsproject vooraf duidelijke afspraken te maken over de taken en mijn eigen taak op tijd af te hebben. Ook wil ik tijdens ieder groepsproject minimaal één keer actief feedback geven of vragen. Aan het einde van het studiejaar wil ik van minimaal drie groepsgenoten horen dat zij mijn inzet en samenwerking als goed ervaren. Dit past bij de EntreComp-competentie samenwerken. Ik wil hiermee leren om niet alleen mijn eigen werk te doen, maar ook actief bij te dragen aan het resultaat van de hele groep.</p>
+    </article>
+  </div>
+
+  <p class="eyebrow">Stap 2</p>
+  <h2 class="step-title">Goede voornemens</h2>
+  <div class="qs">
+    <div class="q">
+      <div class="q-num">1</div>
+      <div>
+        <h3>Wat is je voornemen?</h3>
+        <p>Mijn voornemen is om dit collegejaar actiever initiatief te nemen tijdens mijn opleiding. Ik wil niet te veel afwachten totdat iemand mij een taak geeft. Ik wil zelf vaker een taak oppakken, mijn mening geven en met ideeën komen. Dit wil ik vooral doen tijdens groepsopdrachten en projecten. Op deze manier wil ik meer inzet tonen en mezelf ontwikkelen als toekomstige ondernemer.</p>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">2</div>
+      <div>
+        <h3>Wat is het grotere plan?</h3>
+        <dl class="terms">
+          <div><dt>Lange termijn</dt><dd>Mijn langetermijndoel is om mijn opleiding Ondernemerschap en Retail Management succesvol af te ronden en zoveel mogelijk ervaring op te doen met ondernemen. Uiteindelijk wil ik mogelijk het bedrijf van mijn vader, Interfastfood, overnemen. Daarvoor wil ik leren hoe ik kansen herken, goed samenwerk, duidelijk communiceer en zelfstandig beslissingen neem.</dd></div>
+          <div><dt>Middellange termijn</dt><dd>Mijn middellangetermijndoel is dat ik aan het einde van dit studiejaar duidelijk vooruitgang heb gemaakt in mijn ondernemende houding. Ik wil dan vaker zelf initiatief nemen en mij zekerder voelen in groepsopdrachten en presentaties.</dd></div>
+          <div><dt>Korte termijn</dt><dd>Mijn uitdagende kortetermijndoel is om de komende vier weken minimaal vier keer bewust initiatief te nemen tijdens school. Ik wil deze momenten kort bijhouden, zodat ik aan het einde van de vier weken kan kijken of het gelukt is.</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">3</div>
+      <div>
+        <h3>Wat ga je concreet doen?</h3>
+        <p>Ik maak iedere week een korte planning voor mijn schoolwerk.</p>
+        <dl class="terms">
+          <div><dt>Maandag</dt><dd>Ik kijk welke groepsopdrachten en taken er die week zijn. Ik kies minimaal één moment waarop ik zelf het initiatief ga nemen.</dd></div>
+          <div><dt>Dinsdag / woensdag</dt><dd>Tijdens een groepsopdracht neem ik actief een taak op mij of stel ik zelf een idee voor.</dd></div>
+          <div><dt>Donderdag</dt><dd>Ik controleer of mijn eigen taken op tijd klaar zijn. Wanneer iets niet duidelijk is, vraag ik dit meteen in plaats van af te wachten.</dd></div>
+          <div><dt>Einde van de week</dt><dd>Ik schrijf kort op wanneer ik initiatief heb genomen en wat goed ging. Zo kan ik mijn vooruitgang bijhouden.</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">4</div>
+      <div>
+        <h3>Voor- en nadeel</h3>
+        <div class="pros">
+          <div class="yes"><p class="eyebrow">Voordeel als het lukt</p><p>Ik word actiever, zekerder en zelfstandiger. Ik leer sneller kansen te herkennen en durf eerder mijn ideeën te delen. Dit helpt mij tijdens mijn opleiding en later als ondernemer.</p></div>
+          <div class="no"><p class="eyebrow">Nadeel als het niet lukt</p><p>Ik blijf te veel afwachten en laat kansen liggen om mezelf te ontwikkelen. Ook kan mijn inzet binnen groepsopdrachten minder goed worden.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">5</div>
+      <div>
+        <h3>Als-dan-scenario</h3>
+        <div class="ifthen">
+          <div><span><b>ALS</b>ik na een lange schooldag weinig zin heb,</span><span><b>DAN</b>doe ik toch minimaal één kleine taak die bij mijn doel past.</span></div>
+          <div><span><b>ALS</b>ik niet goed weet wat ik moet doen,</span><span><b>DAN</b>vraag ik het aan mijn groepsgenoten in plaats van af te wachten.</span></div>
+          <div><span><b>ALS</b>ik onzeker ben over een idee,</span><span><b>DAN</b>spreek ik het toch uit en vraag ik wat anderen ervan vinden.</span></div>
+          <div><span><b>ALS</b>ik vergeet om mijn voortgang bij te houden,</span><span><b>DAN</b>zet ik aan het einde van de week een vaste herinnering in mijn telefoon.</span></div>
+          <div><span><b>ALS</b>ik merk dat ik te veel op de achtergrond blijf tijdens een groepsopdracht,</span><span><b>DAN</b>spreek ik mezelf aan en pak ik bewust een taak op.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">6</div>
+      <div>
+        <h3>Reminder</h3>
+        <p class="motto"><mark>Niet afwachten, gewoon beginnen.</mark></p>
+        <p>Iedere keer als ik mijn laptop open voor school, denk ik aan mijn voornemen om actief mee te doen en zelf initiatief te nemen.</p>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">7</div>
+      <div>
+        <h3>Commitment</h3>
+        <p>Ik beloof mezelf dat ik dit collegejaar actief aan mijn initiatief en inzet ga werken. Ik wil niet wachten totdat iets vanzelf op mij afkomt, maar zelf stappen zetten. Ook wanneer ik het spannend vind of geen zin heb, probeer ik toch iets te doen. Ik wil hiermee niet alleen beter worden voor school, maar ook werken aan de ondernemer die ik later wil zijn.</p>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-num">8·9</div>
+      <div>
+        <h3>Feedback en bijsturen</h3>
+        <p>Vraag 8 en 9 beantwoord ik na elk TOW-gesprek. Je vindt ze in de gespreksverslagen bij <a href="#opdracht-5">TOW-opdracht 5</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== OPDRACHT 5 =================== -->
+<section data-view="opdracht-5" hidden>
+  <div class="page-head">
+    <a class="back" href="#talentontwikkeling">← Alle TOW-opdrachten</a>
+    <p class="eyebrow">TOW-opdracht 5</p>
+    <h1 class="title">TOW-gesprekken</h1>
+    <p class="intro">Dit jaar voer ik minimaal drie gesprekken met mijn TOW-docent, meneer Visser. Van elk gesprek maak ik een verslag met een conclusie, actiepunten en mijn antwoorden op vraag 8 en 9 van opdracht 3.</p>
+    <div class="meta"><span class="stamp done">1 van 3 ingeleverd</span></div>
+  </div>
+
+  <div class="talks">
+    <div><strong>Gesprek 1</strong><span class="stamp done">Ingeleverd</span></div>
+    <div class="open"><strong>Gesprek 2</strong><span class="stamp open">Volgt</span></div>
+    <div class="open"><strong>Gesprek 3</strong><span class="stamp open">Volgt</span></div>
+  </div>
+
+  <article class="report">
+    <div class="report-head">
+      <h2>Gesprek 1 met meneer Visser</h2>
+      <span class="eyebrow">Gespreksverslag</span>
+    </div>
+    <div class="prose">
+      <h2>Inleiding</h2>
+      <p>Voor de cursus Talentontwikkeling heb ik een gesprek gehad met mijn TOW-docent, meneer Visser. In dit verslag schrijf ik op wat we besproken hebben en wat ik eruit heb gehaald.</p>
+      <p>Dit jaar ben ik overgestapt van Commerciële Economie naar Ondernemerschap en Retailmanagement. Daar wilde ik het in het gesprek graag over hebben, omdat die overstap best veel voor mij heeft veranderd. Verder wilde ik mijn verbeterpunten bespreken en wat ik na mijn propedeuse wil gaan doen.</p>
+
+      <h2>Agenda</h2>
+      <p>Ik had vooraf drie punten bedacht die ik wilde bespreken:</p>
+      <ol>
+        <li>Het verschil tussen mijn oude opleiding en mijn nieuwe opleiding.</li>
+        <li>Mijn drie verbeterpunten: beter samenwerken, meer initiatief tonen en beter presenteren.</li>
+        <li>Mijn plannen voor de toekomst: Bedrijfskunde na mijn propedeuse en later werken bij Interfastfood, het bedrijf van mijn vader.</li>
+      </ol>
+
+      <h2>Samenvatting per agendapunt</h2>
+      <h3>1. Mijn oude en nieuwe opleiding</h3>
+      <p>We begonnen met het verschil tussen Commerciële Economie en mijn huidige opleiding. Ik vertelde meneer Visser dat ik bij mijn oude opleiding op vrijdagochtend wakker werd en dan al dacht: oh, maandag moet ik weer. Terwijl het weekend nog moest beginnen. Bij deze opleiding heb ik dat helemaal niet.</p>
+      <p>Toen ik het hardop uitlegde, merkte ik pas hoe groot dat verschil eigenlijk is. Bij Commerciële Economie deed ik mijn opdrachten vooral omdat het moest. Nu snap ik waarom ik iets leer, omdat ik het kan koppelen aan ondernemen en aan het bedrijf van mijn vader. Daardoor ga ik met meer zin naar school. Voor mij is dat ook een bevestiging dat ik de goede keuze heb gemaakt door over te stappen.</p>
+
+      <h3>2. Mijn verbeterpunten</h3>
+      <p>Mijn drie verbeterpunten zijn beter samenwerken, meer initiatief tonen en beter leren presenteren. We hebben het vooral over samenwerken gehad, omdat ik daar in groepsopdrachten het meest last van heb.</p>
+      <p>Ik gaf aan dat ik er slecht tegen kan als mensen hun deel niet op tijd afmaken. Ik word daar snel geïrriteerd van en dan doe ik het soms maar zelf, in plaats van er iets van te zeggen. Dat lost het op korte termijn op, maar het probleem blijft. Ik had zelf al bedacht dat het zou helpen als ik mijn groepje zelf mag kiezen, en meneer Visser vond dat ook een goed idee.</p>
+      <p>Hij zei er wel iets bij wat me aan het denken zette. Ik moet niet alleen mensen kiezen die net zo werken als ik, maar juist mensen die mij aanvullen. Eerlijk gezegd was ik van plan om gewoon mensen te kiezen die net zo serieus en snel zijn als ik. Maar als iedereen in een groep hetzelfde is, mis je ook dingen. Iemand die creatiever is of beter de rust bewaart, kan een groep juist sterker maken.</p>
+      <p>Initiatief tonen en presenteren kwamen minder aan bod. Wel zie ik dat het met elkaar te maken heeft. Als ik aan het begin van een project zelf voorstel hoe we de taken verdelen, neem ik initiatief en voorkom ik ook een deel van de irritatie later.</p>
+
+      <h3>3. Mijn toekomstplannen</h3>
+      <p>Na mijn propedeuse wil ik doorstromen naar Bedrijfskunde. We hebben het gehad over wat de toelatingseisen zijn en wat ik daarvoor moet doen. Daardoor is mijn propedeuse voor mij nu echt een doel en niet alleen het eerste jaar.</p>
+      <p>We hebben het ook gehad over Interfastfood, het bedrijf van mijn vader. Ik werk daar nu al in het magazijn en ik zou er later graag verder willen werken. Door mijn werk in het magazijn zie ik hoe het bedrijf in de praktijk draait, en dat helpt me ook bij de lessen. Maar ik weet ook dat je voor een hogere functie meer moet kunnen dan alleen het werk op de vloer. Daarom denk ik dat Bedrijfskunde een goede stap is.</p>
+
+      <h2>Conclusies</h2>
+      <p>Het gesprek heeft me laten zien dat de overstap naar deze opleiding een goede keuze was. Ik heb veel meer zin in school dan vorig jaar en dat komt doordat ik nu weet waarvoor ik het doe.</p>
+      <p>Samenwerken is mijn belangrijkste verbeterpunt. Ik moet minder snel zelf het werk overnemen en vaker zeggen wat ik ervan vind. Mijn groepje zelf kiezen kan helpen, maar dan moet ik wel letten op mensen die iets toevoegen en niet alleen op mensen die op mij lijken.</p>
+      <p>Voor de toekomst heb ik een duidelijk plan: eerst mijn propedeuse halen, dan Bedrijfskunde en later misschien bij Interfastfood aan de slag.</p>
+
+      <h2>Actiepunten</h2>
+      <ul class="squares">
+        <li>Bij het volgende groepsproject kies ik bewust ook iemand die anders werkt dan ik.</li>
+        <li>In de eerste week van een project stel ik zelf een taakverdeling met deadlines voor.</li>
+        <li>Als iemand zijn deel niet op tijd af heeft, zeg ik daar iets van in plaats van het zelf te doen.</li>
+        <li>Bij groepspresentaties neem ik zelf een deel op me, zodat ik meer oefen.</li>
+        <li>Ik zoek de toelatingseisen en de aanmelddeadline van Bedrijfskunde op en zet die in mijn agenda.</li>
+      </ul>
+
+      <h2>Wat mij bijblijft</h2>
+      <div class="callout">
+        <p>Wat me het meest is bijgebleven, is wat meneer Visser zei over mensen zoeken die mij aanvullen. Ik dacht dat ik samenwerking makkelijker kon maken door gewoon mensen te kiezen die net als ik zijn. Nu zie ik dat een groep juist beter wordt als iedereen iets anders meebrengt. Dat wil ik onthouden, ook voor later als ik misschien zelf mensen moet aansturen.</p>
+      </div>
+
+      <h2>Vraag 8: Feedback</h2>
+      <p><strong>Evaluatie aan het eind van de week:</strong> Ik heb in mijn projectgroep een taakverdeling voorgesteld, met per persoon een taak en een deadline. Iedereen ging akkoord en we hebben het in de groepsapp gezet. Eén groepsgenoot was een dag te laat met zijn deel. Deze keer heb ik hem daarop aangesproken in plaats van het zelf te doen. De toelatingseisen van Bedrijfskunde heb ik opgezocht, maar de aanmelddeadline staat nog niet in mijn agenda.</p>
+      <p><strong>Wat ging goed?</strong> Omdat de taken en deadlines vanaf het begin duidelijk waren, wist iedereen wat hij moest doen. Ik ergerde me minder, omdat ik niet steeds hoefde na te gaan wie waarmee bezig was. Iemand aanspreken vond ik lastig, maar het gesprek ging eigenlijk prima.</p>
+      <p><strong>Wat kan beter?</strong> We hadden niet afgesproken wat we doen als iemand te laat is, dus dat moest ik op dat moment zelf oplossen. Ook heb ik het uitzoeken van Bedrijfskunde een beetje laten liggen, omdat er geen harde deadline aan zat.</p>
+      <p><strong>Conclusie:</strong> Het voornemen is grotendeels gelukt. Het samenwerken ging goed, het deel over Bedrijfskunde moet ik nog afmaken.</p>
+
+      <h2>Vraag 9: Als het niet volledig gelukt is</h2>
+      <p>De volgende keer spreek ik aan het begin van een project ook af wat we doen als iemand zijn deadline niet haalt. Dan hoef ik daar achteraf niet mee te komen. Dingen zonder vaste deadline, zoals het uitzoeken van Bedrijfskunde, geef ik zelf een datum in mijn agenda, zodat ik ze niet vooruit blijf schuiven.</p>
+      <div class="callout">
+        <p class="eyebrow">Mijn verbeteractie voor volgende week</p>
+        <p>Maandag de aanmelddeadline van Bedrijfskunde in mijn agenda zetten, en bij de volgende groepsbijeenkomst met de groep afspreken wat we doen als iemand te laat is.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="stack">
+    <div class="empty"><p class="eyebrow">TOW-5.2 · Locatie leeg</p><h3>Gesprek 2</h3><p>Het verslag komt hier na mijn tweede TOW-gesprek.</p></div>
+    <div class="empty"><p class="eyebrow">TOW-5.3 · Locatie leeg</p><h3>Gesprek 3</h3><p>Het verslag komt hier na mijn derde TOW-gesprek.</p></div>
+  </div>
+</section>
+
+<!-- =================== SNUFFELSTAGE =================== -->
+<section data-view="snuffelstage" hidden>
+  <div class="page-head">
+    <p class="eyebrow">04 · Snuffelstage</p>
+    <h1 class="title">Snuffelstage</h1>
+    <p class="intro">Hier komen al mijn stageopdrachten te staan.</p>
+  </div>
+  <div class="empty-grid">
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Stagebedrijf</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Stageopdrachten</h3><p>Volgt.</p></div>
+  </div>
+</section>
+
+<!-- =================== OVERIG =================== -->
+<section data-view="overig" hidden>
+  <div class="page-head">
+    <p class="eyebrow">05 · Overige content</p>
+    <h1 class="title">Overig</h1>
+    <p class="intro">Foto's, links en korte verslagen van alles wat bijdraagt aan mijn persoonlijke en professionele ontwikkeling.</p>
+  </div>
+  <div class="empty-grid">
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Studentbedrijf</h3><p>De link naar de website van mijn studentbedrijf volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Keuzevak</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Belevenisweken</h3><p>Volgt.</p></div>
+    <div class="empty"><p class="eyebrow">Locatie leeg</p><h3>Foto's &amp; links</h3><p>Volgt.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Max van Leeuwen · Studentnummer 1146417</span>
+    <span>Laatst bijgewerkt: 6 november 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Barcode van het studentnummer
+  var digits = "1146417";
+  var bars = "", x = 6;
+  var draw = function (w) { bars += '<rect x="' + x + '" y="0" width="' + w + '" height="48" fill="currentColor"/>'; };
+  draw(2); x += 4; draw(2); x += 6;
+  for (var i = 0; i < digits.length; i++) {
+    var d = parseInt(digits[i], 10);
+    for (var k = 0; k < 4; k++) {
+      var w = ((d + k * 3 + i) % 4) + 1;
+      if (k % 2 === 0) draw(w * 2);
+      x += w * 2 + 3;
+    }
+    x += 4;
+  }
+  draw(2); x += 4; draw(2); x += 2;
+  document.querySelectorAll("svg.bc").forEach(function (svg) {
+    svg.setAttribute("viewBox", "0 0 " + (x + 6) + " 48");
+    svg.innerHTML = bars;
+  });
+
+  // Navigatie tussen pagina's via #naam
+  var views = Array.prototype.slice.call(document.querySelectorAll("[data-view]"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("nav.main a"));
+  var parent = { "opdracht-2": "talentontwikkeling", "opdracht-3": "talentontwikkeling", "opdracht-5": "talentontwikkeling" };
+  var first = true;
+  function show() {
+    var id = location.hash.replace("#", "") || "home";
+    if (!document.querySelector('[data-view="' + id + '"]')) id = "home";
+    views.forEach(function (v) { v.hidden = v.getAttribute("data-view") !== id; });
+    var active = parent[id] || id;
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute("data-nav") === active;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (!first) window.scrollTo(0, 0);
+    first = false;
+  }
+  window.addEventListener("hashchange", show);
+  show();
+})();
+</script>
+</body>
+</html>
